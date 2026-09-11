@@ -1,0 +1,567 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>poo.io</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #24170e 0%,
+            #0b0806 45%,
+            #000000 100%
+        );
+
+    overflow: hidden;
+}
+
+/* Background glow */
+
+.glow {
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    background: rgba(120, 70, 25, 0.25);
+
+    filter: blur(100px);
+
+    opacity: 0;
+
+    transform: scale(0.4);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s ease;
+}
+
+/* =========================
+   FLYING WORDS
+========================= */
+
+#words {
+    position: absolute;
+    inset: 0;
+}
+
+.word {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    font-size: clamp(16px, 2vw, 30px);
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    color: #c58a52;
+
+    opacity: 0;
+
+    transform:
+        translate(var(--x), var(--y))
+        rotate(var(--rotation))
+        scale(var(--scale));
+
+    filter: blur(8px);
+
+    transition:
+        transform 1.5s cubic-bezier(.16,1,.3,1),
+        opacity 0.7s ease,
+        filter 1.2s ease;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+#logo {
+    position: relative;
+
+    z-index: 10;
+
+    font-size: clamp(80px, 15vw, 200px);
+
+    font-weight: 1000;
+
+    letter-spacing: -10px;
+
+    opacity: 0;
+
+    transform: scale(0.4);
+
+    filter: blur(20px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #e4a86b,
+            #8b4e20,
+            #e8b47a
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    transition:
+        transform 1s cubic-bezier(.16,1,.3,1),
+        opacity 0.8s ease,
+        filter 1s ease;
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+#subtitle {
+    position: absolute;
+
+    top: calc(50% + 120px);
+
+    font-size: 13px;
+
+    letter-spacing: 8px;
+
+    text-transform: uppercase;
+
+    color: #8d735d;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+/* =========================
+   WEBSITE
+========================= */
+
+#website {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #18120d,
+            #050505 70%
+        );
+}
+
+.site-content {
+    text-align: center;
+}
+
+.site-content h1 {
+    font-size: 80px;
+}
+
+.site-content p {
+    margin-top: 15px;
+
+    color: #777;
+
+    font-size: 18px;
+}
+
+/* =========================
+   FADE OUT
+========================= */
+
+#intro.finished {
+    animation: disappear 1s forwards;
+
+    pointer-events: none;
+}
+
+@keyframes disappear {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     INTRO SCREEN
+========================= -->
+
+<div id="intro">
+
+    <div class="glow"></div>
+
+
+    <div id="words">
+
+        <!-- POO WORDS -->
+
+        <div class="word">POO</div>
+        <div class="word">POOP</div>
+        <div class="word">POOPY</div>
+        <div class="word">POOPER</div>
+        <div class="word">POOPING</div>
+        <div class="word">POOPED</div>
+
+        <div class="word">DUMP</div>
+        <div class="word">DUMPY</div>
+        <div class="word">DUMPS</div>
+
+        <div class="word">TURD</div>
+        <div class="word">TURDY</div>
+        <div class="word">TURDS</div>
+
+        <div class="word">STINKY</div>
+        <div class="word">STINK</div>
+        <div class="word">STENCH</div>
+
+        <div class="word">TOILET</div>
+        <div class="word">BATHROOM</div>
+        <div class="word">RESTROOM</div>
+
+        <div class="word">FLUSH</div>
+        <div class="word">FLUSHED</div>
+        <div class="word">FLUSHING</div>
+
+        <div class="word">TOILET PAPER</div>
+        <div class="word">TP</div>
+        <div class="word">ROLL</div>
+
+        <div class="word">PLUNGER</div>
+        <div class="word">PIPE</div>
+        <div class="word">DRAIN</div>
+
+        <div class="word">SMELLY</div>
+        <div class="word">STINKY</div>
+        <div class="word">FUNKY</div>
+
+        <div class="word">BROWN</div>
+        <div class="word">MUD</div>
+        <div class="word">PLOP</div>
+
+        <div class="word">PLOP</div>
+        <div class="word">PLOP</div>
+        <div class="word">PLOP</div>
+
+        <div class="word">SPLAT</div>
+        <div class="word">SPLAT</div>
+
+        <div class="word">FART</div>
+        <div class="word">FARTY</div>
+        <div class="word">TOOT</div>
+
+        <div class="word">UH OH</div>
+        <div class="word">OH NO</div>
+
+        <div class="word">BROWN STUFF</div>
+        <div class="word">NUMBER TWO</div>
+        <div class="word">NATURE CALL</div>
+
+        <div class="word">DO NOT FLUSH</div>
+        <div class="word">FLUSH IT</div>
+
+        <div class="word">POO TIME</div>
+        <div class="word">POO ZONE</div>
+        <div class="word">POO MODE</div>
+
+        <div class="word">POO.IO</div>
+        <div class="word">POO WORLD</div>
+        <div class="word">POO CLUB</div>
+
+    </div>
+
+
+    <!-- MAIN LOGO -->
+
+    <div id="logo">
+        poo.io
+    </div>
+
+
+    <div id="subtitle">
+        ENTER THE POO ZONE
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WEBSITE BEHIND INTRO
+========================= -->
+
+<main id="website">
+
+    <div class="site-content">
+
+        <h1>poo.io</h1>
+
+        <p>Welcome to the Poo Zone.</p>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const words =
+    document.querySelectorAll(".word");
+
+const logo =
+    document.getElementById("logo");
+
+const subtitle =
+    document.getElementById("subtitle");
+
+const intro =
+    document.getElementById("intro");
+
+const glow =
+    document.querySelector(".glow");
+
+
+/* =========================
+   RANDOM STARTING POSITIONS
+========================= */
+
+words.forEach((word, index) => {
+
+    /*
+        Random direction
+    */
+
+    const angle =
+        Math.random() * Math.PI * 2;
+
+
+    /*
+        Random distance
+    */
+
+    const distance =
+        Math.max(
+            window.innerWidth,
+            window.innerHeight
+        ) * (0.8 + Math.random() * 1.2);
+
+
+    const x =
+        Math.cos(angle) * distance;
+
+    const y =
+        Math.sin(angle) * distance;
+
+
+    /*
+        Random rotation
+    */
+
+    const rotation =
+        (Math.random() - 0.5) * 100;
+
+
+    /*
+        Random starting size
+    */
+
+    const scale =
+        0.4 + Math.random() * 1.3;
+
+
+    word.style.setProperty(
+        "--x",
+        `${x}px`
+    );
+
+    word.style.setProperty(
+        "--y",
+        `${y}px`
+    );
+
+    word.style.setProperty(
+        "--rotation",
+        `${rotation}deg`
+    );
+
+    word.style.setProperty(
+        "--scale",
+        scale
+    );
+
+
+    /*
+        Stagger the animation
+    */
+
+    word.style.transitionDelay =
+        `${index * 0.035}s`;
+
+});
+
+
+/* =========================
+   START
+========================= */
+
+setTimeout(() => {
+
+    words.forEach(word => {
+
+        word.style.opacity = "1";
+
+        word.style.transform =
+            "translate(0,0) rotate(0deg) scale(1)";
+
+        word.style.filter =
+            "blur(0px)";
+
+    });
+
+}, 300);
+
+
+/* =========================
+   TRANSITION TO LOGO
+========================= */
+
+setTimeout(() => {
+
+    words.forEach(word => {
+
+        word.style.opacity = "0";
+
+        word.style.transform =
+            "translate(0,0) scale(1.5)";
+
+        word.style.filter =
+            "blur(18px)";
+
+    });
+
+
+    /*
+        Show logo
+    */
+
+    logo.style.opacity = "1";
+
+    logo.style.transform =
+        "scale(1)";
+
+    logo.style.filter =
+        "blur(0px)";
+
+
+    /*
+        Glow appears
+    */
+
+    glow.style.opacity = "1";
+
+    glow.style.transform =
+        "scale(1.2)";
+
+}, 3000);
+
+
+/* =========================
+   SUBTITLE
+========================= */
+
+setTimeout(() => {
+
+    subtitle.style.opacity = "1";
+
+    subtitle.style.transform =
+        "translateY(0)";
+
+}, 3600);
+
+
+/* =========================
+   FINISH
+========================= */
+
+setTimeout(() => {
+
+    intro.classList.add("finished");
+
+    document.body.style.overflow =
+        "auto";
+
+}, 5200);
+
+
+/* =========================
+   LOCK SCROLL DURING INTRO
+========================= */
+
+document.body.style.overflow =
+    "hidden";
+
+</script>
+
+</body>
+</html>
+```
